@@ -4,6 +4,7 @@ describe("Gilded Rose", function() {
   var specialityShop
   var humdrumShop
   var cheeseShop
+  var sufurasShop
 
   beforeEach(function () {
     specialityShop = new Shop([
@@ -17,6 +18,8 @@ describe("Gilded Rose", function() {
       new Item("bread roll", 10, 40),
       new Item("rubber duck", 100, 50)
     ]);
+
+    sufurasShop = new Shop([new Item("Sulfuras, Hand of Ragnaros", 1, 80)]);
 
     cheeseShop = new Shop([new Item("Aged Brie", 4, 48)]);
 
@@ -51,12 +54,6 @@ describe("Gilded Rose", function() {
       expect(humdrumShop.items[0].sellIn).toEqual(19)
       expect(humdrumShop.items[1].sellIn).toEqual(9)
       expect(humdrumShop.items[2].sellIn).toEqual(99)
-    })
-
-    it("does not decline for sulfuras", function() {
-      gildedRose = new Shop([new Item("Sulfuras, Hand of Ragnaros", 0, 80)]);
-      gildedRose.updateQuality();
-      expect(gildedRose.items[0].sellIn).toEqual(0)
     })
 
   })
@@ -113,5 +110,25 @@ describe("Gilded Rose", function() {
       expect(oldCheeseShop.items[0].sellIn).toEqual(-2)
     })
   })
+
+  describe("Sulfuras, Hand of Ragnaros", function (){
+
+    it("does not lose quality", function() {
+      sufurasShop.updateQuality();
+      expect(sufurasShop.items[0].quality).toEqual(80)
+      sufurasShop.updateQuality();
+      expect(sufurasShop.items[0].quality).toEqual(80)
+    })
+
+    it("does not have a sellIn date", function() {
+      sufurasShop.updateQuality();
+      expect(sufurasShop.items[0].sellIn).toEqual(1)
+      sufurasShop.updateQuality();
+      expect(sufurasShop.items[0].sellIn).toEqual(1)
+    })
+
+
+  })
+
 
 })
