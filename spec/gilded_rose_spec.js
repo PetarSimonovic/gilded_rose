@@ -49,5 +49,13 @@ describe("Gilded Rose", function() {
       expect(gildedRose.items[2].sellIn).toEqual(99)
     })
 
+    it("does not decline for sulfuras", function() {
+      gildedRose = new Shop(specialItems);
+      gildedRose.updateQuality();
+      expect(gildedRose.items[2].sellIn).toEqual(0)
+
+    })
+
   })
-});
+
+})
