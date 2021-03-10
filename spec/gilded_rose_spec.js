@@ -3,6 +3,7 @@ describe("Gilded Rose", function() {
 
   var specialityShop
   var humdrumShop
+  var cheeseShop
 
   beforeEach(function () {
     specialityShop = new Shop([
@@ -10,11 +11,15 @@ describe("Gilded Rose", function() {
       new Item("Backstage passes to a TAFKAL80ETC concert", 50, 5),
       new Item("Sulfuras, Hand of Ragnaros", 0, 80)
     ]);
+
     humdrumShop = new Shop([
       new Item("potato", 20, 20),
       new Item("bread roll", 10, 40),
       new Item("rubber duck", 100, 50)
     ]);
+
+    cheeseShop = new Shop([new Item("Aged Brie", 30, 1)]);
+
   })
 
   describe("initialisation", function() {
@@ -52,24 +57,37 @@ describe("Gilded Rose", function() {
       gildedRose = new Shop([new Item("Sulfuras, Hand of Ragnaros", 0, 80)]);
       gildedRose.updateQuality();
       expect(gildedRose.items[0].sellIn).toEqual(0)
-
     })
 
   })
 
   describe("quality", function(){
 
-    it("declines each day for normal items", function (){
+    it("declines by 1 each day for normal items", function (){
       humdrumShop.updateQuality();
       expect(humdrumShop.items[0].quality).toEqual(19)
       expect(humdrumShop.items[1].quality).toEqual(39)
       expect(humdrumShop.items[2].quality).toEqual(49)
     })
 
-    it("increases each day for Aged Brie", function (){
-      gildedRose = new Shop([new Item("Aged Brie", 30, 1)]);
-      gildedRose.updateQuality();
-      expect(gildedRose.items[0].quality).toEqual(2)
+
+    it("declines twice as fast for normal items", function (){
+      outOfDateShop = new Shop([ new Item("potato", 1, 20) ])
+      outOfDateShop.updateQuality();
+      expect(outOfDateShop.items[0].quality).toEqual(19)
+      outOfDateShop.updateQuality();
+      expect(outOfDateShop.items[0].quality).toEqual(17)
+      outOfDateShop.updateQuality();
+      expect(outOfDateShop.items[0].quality).toEqual(15)
+    })
+
+  })
+
+  describe("Aged Brie", function(){
+
+    it("increases in quality each day", function (){
+      cheeseShop.updateQuality();
+      expect(cheeseShop.items[0].quality).toEqual(2)
     })
 
   })
