@@ -99,18 +99,18 @@ describe("Gilded Rose", function() {
       expect(cheeseShop.items[0].quality).toEqual(50)
     })
 
-    it("does not decline in quality after sellIn date", function () {
-      cheeseShop.updateQuality();
-      expect(cheeseShop.items[0].quality).toEqual(49)
-      cheeseShop.updateQuality();
-      cheeseShop.updateQuality();
-      cheeseShop.updateQuality();
-      cheeseShop.updateQuality();
-      expect(cheeseShop.items[0].quality).toEqual(50)
-      expect(cheeseShop.items[0].sellIn).toEqual(-1)
-      cheeseShop.updateQuality();
-      expect(cheeseShop.items[0].quality).toEqual(50)
-      expect(cheeseShop.items[0].sellIn).toEqual(-2)
+    it("increases in quality twice as fast after sell-In date", function () {
+      let oldCheeseShop = new Shop([new Item("Aged Brie", 1, 40)]);
+      oldCheeseShop.updateQuality();
+      expect(oldCheeseShop.items[0].quality).toEqual(41)
+      expect(oldCheeseShop.items[0].sellIn).toEqual(0)
+      console.log(oldCheeseShop.items)
+      oldCheeseShop.updateQuality();
+      expect(oldCheeseShop.items[0].quality).toEqual(43)
+      expect(oldCheeseShop.items[0].sellIn).toEqual(-1)
+      oldCheeseShop.updateQuality();
+      expect(oldCheeseShop.items[0].quality).toEqual(45)
+      expect(oldCheeseShop.items[0].sellIn).toEqual(-2)
     })
   })
 
