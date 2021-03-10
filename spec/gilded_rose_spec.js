@@ -7,6 +7,12 @@ describe("Gilded Rose", function() {
     new Item("Sulfuras, Hand of Ragnaros", 0, 80)
   ]
 
+  let humdrumItems = [
+    new Item("potato", 20, 20),
+    new Item("bread roll", 10, 40),
+    new Item("rubber duck", 100, 50)
+  ]
+
   describe("initialisation", function() {
 
     it("can add an item of stock", function() {
@@ -21,5 +27,27 @@ describe("Gilded Rose", function() {
       expect(gildedRose.items[2].name).toEqual("Sulfuras, Hand of Ragnaros");
     });
 
+    it("can recognise sellIn of items", function() {
+      gildedRose = new Shop(humdrumItems);
+      expect(gildedRose.items[0].sellIn).toEqual(20);
+    });
+
+    it("can recognise quality of items", function() {
+      gildedRose = new Shop(humdrumItems);
+      expect(gildedRose.items[1].quality).toEqual(40);
+    });
+
   });
+
+  describe("sellIn", function () {
+
+    it("declines each day", function() {
+      gildedRose = new Shop(humdrumItems);
+      gildedRose.updateQuality();
+      expect(gildedRose.items[0].sellIn).toEqual(19)
+      expect(gildedRose.items[1].sellIn).toEqual(9)
+      expect(gildedRose.items[2].sellIn).toEqual(99)
+    })
+
+  })
 });

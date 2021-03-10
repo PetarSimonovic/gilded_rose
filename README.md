@@ -15,22 +15,22 @@ Do not alter the Item class or Items property (you can make the UpdateQuality me
 - The value declines at the end of each day.
 
 **Quality**: Denotes how valuable the item is.
-- Value declines at the end of each day.
+- Quality declines at the end of each day. (except for Sulfuras)
 - It declines twice as fast once the sell-by date has passed
-- The value cannot be negative.
-- The value cannot be more than 50 (except for Sulfuras)
+- The quality cannot be negative.
+- The quality cannot be more than 50 (except for Sulfuras)
 
 ## Items
 
 **Aged Brie**:
 - increases in Quality the older it gets
 
-**Sulfuras**
+**Sulfuras, Hand of Ragnaros**
 - Has no SellIn date
 - Never decreases in Quality
 - It's quality is always 80
 
-**Backstage passes**
+**Backstage passes to a TAFKAL80ETC concert**
 - Quality rises as SellIn date approaches
  - 10 days or less: Quality increases by 2
  - 5 days or less: Quality increases by 3
