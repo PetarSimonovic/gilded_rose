@@ -2,7 +2,7 @@
 
 # The brief
 
-Refactor the code in such a way that adding the new "conjured" functionality is easy.
+Refactor the existing gilded_rose code in such a way that adding the new "conjured" functionality is easy.
 
 Make changes to the UpdateQuality method and add any new code as long as everything still works correctly.
 
@@ -18,7 +18,7 @@ Do not alter the Item class or Items property (you can make the UpdateQuality me
 - Value declines at the end of each day.
 - It declines twice as fast once the sell-by date has passed
 - The value cannot be negative.
-- The value cannot be more than 50
+- The value cannot be more than 50 (except for Sulfuras)
 
 ## Items
 
@@ -28,6 +28,7 @@ Do not alter the Item class or Items property (you can make the UpdateQuality me
 **Sulfuras**
 - Has no SellIn date
 - Never decreases in Quality
+- It's quality is always 80
 
 **Backstage passes**
 - Quality rises as SellIn date approaches

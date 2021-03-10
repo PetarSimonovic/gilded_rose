@@ -3,11 +3,11 @@ module.exports = function (config) {
         basePath: '',
         frameworks: ['jasmine'],
         files: [
-            'src/GildedRose.js',
-            'spec/GildedRoseSpec.js'
+            'src/gilded_rose.js',
+            'spec/gilded_rose_spec.js'
         ],
         preprocessors: {
-            'src/GildedRose.js': ['coverage']
+            'src/gilded_rose.js': ['coverage']
         },
         plugins: [
             'karma-jasmine',
