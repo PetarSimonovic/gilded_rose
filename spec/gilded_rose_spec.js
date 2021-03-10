@@ -18,7 +18,7 @@ describe("Gilded Rose", function() {
       new Item("rubber duck", 100, 50)
     ]);
 
-    cheeseShop = new Shop([new Item("Aged Brie", 30, 1)]);
+    cheeseShop = new Shop([new Item("Aged Brie", 4, 48)]);
 
   })
 
@@ -87,9 +87,31 @@ describe("Gilded Rose", function() {
 
     it("increases in quality each day", function (){
       cheeseShop.updateQuality();
-      expect(cheeseShop.items[0].quality).toEqual(2)
+      expect(cheeseShop.items[0].quality).toEqual(49)
     })
 
+    it("cannot have a quality above 50", function (){
+      cheeseShop.updateQuality();
+      expect(cheeseShop.items[0].quality).toEqual(49)
+      cheeseShop.updateQuality();
+      expect(cheeseShop.items[0].quality).toEqual(50)
+      cheeseShop.updateQuality();
+      expect(cheeseShop.items[0].quality).toEqual(50)
+    })
+
+    it("does not decline in quality after sellIn date", function () {
+      cheeseShop.updateQuality();
+      expect(cheeseShop.items[0].quality).toEqual(49)
+      cheeseShop.updateQuality();
+      cheeseShop.updateQuality();
+      cheeseShop.updateQuality();
+      cheeseShop.updateQuality();
+      expect(cheeseShop.items[0].quality).toEqual(50)
+      expect(cheeseShop.items[0].sellIn).toEqual(-1)
+      cheeseShop.updateQuality();
+      expect(cheeseShop.items[0].quality).toEqual(50)
+      expect(cheeseShop.items[0].sellIn).toEqual(-2)
+    })
   })
 
 })
