@@ -66,6 +66,12 @@ describe("Gilded Rose", function() {
       expect(humdrumShop.items[2].quality).toEqual(49)
     })
 
+    it("increases each day for Aged Brie", function (){
+      gildedRose = new Shop([new Item("Aged Brie", 30, 1)]);
+      gildedRose.updateQuality();
+      expect(gildedRose.items[0].quality).toEqual(2)
+    })
+
   })
 
 })
